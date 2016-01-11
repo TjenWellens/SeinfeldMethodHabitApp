@@ -1,0 +1,338 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A4CA29751C43B0CA008BBFBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA29741C43B0CA008BBFBF /* AppDelegate.swift */; };
+		A4CA29781C43B0CA008BBFBF /* SeinfeldTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A4CA29761C43B0CA008BBFBF /* SeinfeldTracker.xcdatamodeld */; };
+		A4CA297A1C43B0CA008BBFBF /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA29791C43B0CA008BBFBF /* MasterViewController.swift */; };
+		A4CA297C1C43B0CA008BBFBF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA297B1C43B0CA008BBFBF /* DetailViewController.swift */; };
+		A4CA297F1C43B0CA008BBFBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4CA297D1C43B0CA008BBFBF /* Main.storyboard */; };
+		A4CA29811C43B0CA008BBFBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4CA29801C43B0CA008BBFBF /* Assets.xcassets */; };
+		A4CA29841C43B0CA008BBFBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4CA29821C43B0CA008BBFBF /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A4CA29711C43B0CA008BBFBF /* SeinfeldTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeinfeldTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4CA29741C43B0CA008BBFBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A4CA29771C43B0CA008BBFBF /* SeinfeldTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SeinfeldTracker.xcdatamodel; sourceTree = "<group>"; };
+		A4CA29791C43B0CA008BBFBF /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		A4CA297B1C43B0CA008BBFBF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A4CA297E1C43B0CA008BBFBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A4CA29801C43B0CA008BBFBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A4CA29831C43B0CA008BBFBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A4CA29851C43B0CA008BBFBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A4CA296E1C43B0CA008BBFBF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A4CA29681C43B0CA008BBFBF = {
+			isa = PBXGroup;
+			children = (
+				A4CA29731C43B0CA008BBFBF /* SeinfeldTracker */,
+				A4CA29721C43B0CA008BBFBF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A4CA29721C43B0CA008BBFBF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A4CA29711C43B0CA008BBFBF /* SeinfeldTracker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A4CA29731C43B0CA008BBFBF /* SeinfeldTracker */ = {
+			isa = PBXGroup;
+			children = (
+				A4CA298D1C43B66C008BBFBF /* Views */,
+				A4CA298C1C43B664008BBFBF /* Model */,
+				A4CA298B1C43B65F008BBFBF /* Controllers */,
+				A4CA29741C43B0CA008BBFBF /* AppDelegate.swift */,
+				A4CA297D1C43B0CA008BBFBF /* Main.storyboard */,
+				A4CA29801C43B0CA008BBFBF /* Assets.xcassets */,
+				A4CA29821C43B0CA008BBFBF /* LaunchScreen.storyboard */,
+				A4CA29851C43B0CA008BBFBF /* Info.plist */,
+				A4CA29761C43B0CA008BBFBF /* SeinfeldTracker.xcdatamodeld */,
+			);
+			path = SeinfeldTracker;
+			sourceTree = "<group>";
+		};
+		A4CA298B1C43B65F008BBFBF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A4CA29791C43B0CA008BBFBF /* MasterViewController.swift */,
+				A4CA297B1C43B0CA008BBFBF /* DetailViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		A4CA298C1C43B664008BBFBF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A4CA298D1C43B66C008BBFBF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A4CA29701C43B0CA008BBFBF /* SeinfeldTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A4CA29881C43B0CA008BBFBF /* Build configuration list for PBXNativeTarget "SeinfeldTracker" */;
+			buildPhases = (
+				A4CA296D1C43B0CA008BBFBF /* Sources */,
+				A4CA296E1C43B0CA008BBFBF /* Frameworks */,
+				A4CA296F1C43B0CA008BBFBF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SeinfeldTracker;
+			productName = SeinfeldTracker;
+			productReference = A4CA29711C43B0CA008BBFBF /* SeinfeldTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A4CA29691C43B0CA008BBFBF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = TjenWellens;
+				TargetAttributes = {
+					A4CA29701C43B0CA008BBFBF = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = A4CA296C1C43B0CA008BBFBF /* Build configuration list for PBXProject "SeinfeldTracker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A4CA29681C43B0CA008BBFBF;
+			productRefGroup = A4CA29721C43B0CA008BBFBF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A4CA29701C43B0CA008BBFBF /* SeinfeldTracker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A4CA296F1C43B0CA008BBFBF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4CA29841C43B0CA008BBFBF /* LaunchScreen.storyboard in Resources */,
+				A4CA29811C43B0CA008BBFBF /* Assets.xcassets in Resources */,
+				A4CA297F1C43B0CA008BBFBF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A4CA296D1C43B0CA008BBFBF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4CA29781C43B0CA008BBFBF /* SeinfeldTracker.xcdatamodeld in Sources */,
+				A4CA29751C43B0CA008BBFBF /* AppDelegate.swift in Sources */,
+				A4CA297A1C43B0CA008BBFBF /* MasterViewController.swift in Sources */,
+				A4CA297C1C43B0CA008BBFBF /* DetailViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A4CA297D1C43B0CA008BBFBF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4CA297E1C43B0CA008BBFBF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A4CA29821C43B0CA008BBFBF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4CA29831C43B0CA008BBFBF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A4CA29861C43B0CA008BBFBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A4CA29871C43B0CA008BBFBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A4CA29891C43B0CA008BBFBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SeinfeldTracker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = eu.tjenwellens.SeinfeldTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A4CA298A1C43B0CA008BBFBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SeinfeldTracker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = eu.tjenwellens.SeinfeldTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A4CA296C1C43B0CA008BBFBF /* Build configuration list for PBXProject "SeinfeldTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4CA29861C43B0CA008BBFBF /* Debug */,
+				A4CA29871C43B0CA008BBFBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A4CA29881C43B0CA008BBFBF /* Build configuration list for PBXNativeTarget "SeinfeldTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4CA29891C43B0CA008BBFBF /* Debug */,
+				A4CA298A1C43B0CA008BBFBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A4CA29761C43B0CA008BBFBF /* SeinfeldTracker.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A4CA29771C43B0CA008BBFBF /* SeinfeldTracker.xcdatamodel */,
+			);
+			currentVersion = A4CA29771C43B0CA008BBFBF /* SeinfeldTracker.xcdatamodel */;
+			path = SeinfeldTracker.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = A4CA29691C43B0CA008BBFBF /* Project object */;
+}
