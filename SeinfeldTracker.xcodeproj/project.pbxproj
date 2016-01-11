@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A462CE541C43CE1100832D1B /* AddHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A462CE531C43CE1100832D1B /* AddHabitViewController.swift */; };
+		A47DF0EC1C43D76500693DE2 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DF0EB1C43D76500693DE2 /* Habit.swift */; };
 		A4CA29751C43B0CA008BBFBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA29741C43B0CA008BBFBF /* AppDelegate.swift */; };
 		A4CA29781C43B0CA008BBFBF /* SeinfeldTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A4CA29761C43B0CA008BBFBF /* SeinfeldTracker.xcdatamodeld */; };
 		A4CA297A1C43B0CA008BBFBF /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA29791C43B0CA008BBFBF /* MasterViewController.swift */; };
@@ -14,9 +16,12 @@
 		A4CA297F1C43B0CA008BBFBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4CA297D1C43B0CA008BBFBF /* Main.storyboard */; };
 		A4CA29811C43B0CA008BBFBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4CA29801C43B0CA008BBFBF /* Assets.xcassets */; };
 		A4CA29841C43B0CA008BBFBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4CA29821C43B0CA008BBFBF /* LaunchScreen.storyboard */; };
+		A4CA298F1C43C1F4008BBFBF /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA298E1C43C1F4008BBFBF /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A462CE531C43CE1100832D1B /* AddHabitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHabitViewController.swift; sourceTree = "<group>"; };
+		A47DF0EB1C43D76500693DE2 /* Habit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		A4CA29711C43B0CA008BBFBF /* SeinfeldTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeinfeldTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4CA29741C43B0CA008BBFBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4CA29771C43B0CA008BBFBF /* SeinfeldTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SeinfeldTracker.xcdatamodel; sourceTree = "<group>"; };
@@ -26,6 +31,7 @@
 		A4CA29801C43B0CA008BBFBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4CA29831C43B0CA008BBFBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4CA29851C43B0CA008BBFBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4CA298E1C43C1F4008BBFBF /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +80,9 @@
 		A4CA298B1C43B65F008BBFBF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A4CA29791C43B0CA008BBFBF /* MasterViewController.swift */,
 				A4CA297B1C43B0CA008BBFBF /* DetailViewController.swift */,
+				A4CA29791C43B0CA008BBFBF /* MasterViewController.swift */,
+				A462CE531C43CE1100832D1B /* AddHabitViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -83,6 +90,8 @@
 		A4CA298C1C43B664008BBFBF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A4CA298E1C43C1F4008BBFBF /* DataModel.swift */,
+				A47DF0EB1C43D76500693DE2 /* Habit.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -166,6 +175,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4CA29781C43B0CA008BBFBF /* SeinfeldTracker.xcdatamodeld in Sources */,
+				A462CE541C43CE1100832D1B /* AddHabitViewController.swift in Sources */,
+				A4CA298F1C43C1F4008BBFBF /* DataModel.swift in Sources */,
+				A47DF0EC1C43D76500693DE2 /* Habit.swift in Sources */,
 				A4CA29751C43B0CA008BBFBF /* AppDelegate.swift in Sources */,
 				A4CA297A1C43B0CA008BBFBF /* MasterViewController.swift in Sources */,
 				A4CA297C1C43B0CA008BBFBF /* DetailViewController.swift in Sources */,
@@ -318,6 +330,7 @@
 				A4CA298A1C43B0CA008BBFBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -36,7 +36,7 @@
                                 <rect key="frame" x="20" y="292" width="560" height="17"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" size="system"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -91,7 +91,7 @@
                                             <rect key="frame" x="15" y="12" width="124.5" height="19.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Month view" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4fI-aZ-Qpl">
@@ -118,8 +118,7 @@
                     <navigationItem key="navigationItem" title="Habits" id="Zdf-7t-Un8">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="qq4-Ye-85x">
                             <connections>
-                                <action selector="addHabit:" destination="7bK-jq-Zjz" id="sv0-am-QWJ"/>
-                                <segue destination="hgT-u4-K9g" kind="popoverPresentation" popoverAnchorBarButtonItem="qq4-Ye-85x" id="Zad-mJ-cXZ">
+                                <segue destination="hgT-u4-K9g" kind="popoverPresentation" identifier="showAdd" popoverAnchorBarButtonItem="qq4-Ye-85x" id="Zad-mJ-cXZ">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -161,7 +160,7 @@
                                 <rect key="frame" x="20" y="292" width="560" height="17"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" size="system"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -197,10 +196,10 @@
             </objects>
             <point key="canvasLocation" x="-57" y="105"/>
         </scene>
-        <!--Detail-->
+        <!--Add a Habit-->
         <scene sceneID="ysx-MH-MFU">
             <objects>
-                <viewController title="Detail" id="y8D-f8-dbO" customClass="DetailViewController" customModule="SeinfeldTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Detail" id="y8D-f8-dbO" userLabel="Add a Habit" customClass="AddHabitViewController" customModule="SeinfeldTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rRl-H3-o8m"/>
                         <viewControllerLayoutGuide type="bottom" id="KYk-sf-2UH"/>
@@ -209,28 +208,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Add a Habit" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="fNJ-8e-Uy3">
-                                <rect key="frame" x="20" y="292" width="560" height="17"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Nlx-NS-ct7">
+                                <rect key="frame" x="140" y="147" width="320" height="307"/>
+                                <subviews>
+                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Name:" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="fNJ-8e-Uy3">
+                                        <rect key="frame" x="139" y="0.0" width="42" height="17"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" size="system"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6lp-Lj-sF7">
+                                        <rect key="frame" x="20" y="25" width="280" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminder:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="99h-U5-LMQ">
+                                        <rect key="frame" x="121" y="63" width="78" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="4rx-AY-6Wb">
+                                        <rect key="frame" x="0.0" y="91" width="320" height="216"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="474205848.89890999">
+                                            <!--2016-01-11 11:50:48 +0000-->
+                                        </date>
+                                    </datePicker>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="6lp-Lj-sF7" secondAttribute="trailing" constant="20" symbolic="YES" id="6F1-zO-Khd"/>
+                                    <constraint firstItem="6lp-Lj-sF7" firstAttribute="leading" secondItem="Nlx-NS-ct7" secondAttribute="leading" constant="20" symbolic="YES" id="AlN-3l-KJ6"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fNJ-8e-Uy3" firstAttribute="leading" secondItem="WmL-bz-bga" secondAttribute="leading" constant="20" symbolic="YES" id="4zb-UN-8m6"/>
-                            <constraint firstItem="fNJ-8e-Uy3" firstAttribute="centerY" secondItem="WmL-bz-bga" secondAttribute="centerY" id="lNr-Po-eop"/>
-                            <constraint firstAttribute="trailing" secondItem="fNJ-8e-Uy3" secondAttribute="trailing" constant="20" symbolic="YES" id="vFo-zN-AZf"/>
+                            <constraint firstItem="Nlx-NS-ct7" firstAttribute="centerY" secondItem="WmL-bz-bga" secondAttribute="centerY" id="Oig-Lf-ZGH"/>
+                            <constraint firstItem="Nlx-NS-ct7" firstAttribute="centerX" secondItem="WmL-bz-bga" secondAttribute="centerX" id="u3b-6n-Ufo"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="qag-Iz-j2C"/>
+                    <navigationItem key="navigationItem" title="Add a Habit" id="qag-Iz-j2C">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="0uh-BF-6ht">
+                            <connections>
+                                <segue destination="7Be-ha-bWH" kind="unwind" identifier="didAdd" unwindAction="unwindFromAdd:" id="sKF-lS-I1b"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="iXa-lg-knp">
+                            <connections>
+                                <action selector="done" destination="y8D-f8-dbO" id="51S-O9-LGw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="detailDescriptionLabel" destination="fNJ-8e-Uy3" id="Vf8-sH-wk5"/>
+                        <outlet property="datePicker" destination="4rx-AY-6Wb" id="q4a-N9-dKK"/>
+                        <outlet property="nameTxt" destination="6lp-Lj-sF7" id="HGL-Wg-C4V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JEc-Wl-Gyf" sceneMemberID="firstResponder"/>
+                <exit id="7Be-ha-bWH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2309" y="-606"/>
         </scene>
