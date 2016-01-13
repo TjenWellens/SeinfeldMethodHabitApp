@@ -24,27 +24,59 @@ class MonthDetailViewController : UICollectionViewController {
     }
     var monthHeader: MonthHeaderReusableView!
     
-    func foo(){
-        let date = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
-        
-        let year =  components.year
-        let month = components.month
-        let day = components.day
-        
-        print(year)
-        print(month)
-        print(day)
-    }
+//    func foo(){
+//        let date = NSDate()
+//        let calendar = NSCalendar.currentCalendar()
+//        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+//        
+//        let year =  components.year
+//        let month = components.month
+//        let day = components.day
+//        
+//        print(year)
+//        print(month)
+//        print(day)
+//    }
     
     func extractDayOfMonth(date: NSDate) -> Int {
         let calendar = NSCalendar.currentCalendar()
         return calendar.component(.Day, fromDate: date)
     }
+
+//    func foo2(){
+//        
+//        let calendar = NSCalendar.currentCalendar()
+//        let date = NSDate()
+//        let components = calendar.components([.NSMonthCalendarUnit], fromDate: date)
+//        components.day = 1
+//        let firstDateOfMonth: NSDate = calendar.dateFromComponents(components)!
+//        
+//        components.month  += 1
+//        components.day     = 0
+//        let lastDateOfMonth: NSDate = calendar.dateFromComponents(components)!
+//
+//        let day = calendar.component(.Day, fromDate: date)
+//        
+//
+//    }
     
     func dayNumberForIndexPath(indexPath: NSIndexPath) -> Int? {
-        return 29;
+        let index = indexPath.row + 1 - offsetForMonth
+        guard index > 0 else {
+            return nil
+        }
+        
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.NSMonthCalendarUnit], fromDate: currentMonth)
+        let month = components.month
+        components.day = index
+        let date = calendar.dateFromComponents(components)!
+        let checkMonth = calendar.component(.Month, fromDate: date)
+        
+        guard checkMonth == month else {
+            return nil
+        }
+        return calendar.component(.Day, fromDate: date)
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -57,11 +89,11 @@ class MonthDetailViewController : UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseCellIdentifier, forIndexPath: indexPath) as! DayCell
-        cell.backgroundColor = UIColor.yellowColor()
+        cell.dayLabel.backgroundColor = UIColor.redColor()
         if let day = dayNumberForIndexPath(indexPath) {
             cell.dayLabel.text = "\(day)"
         }else {
-            cell.dayLabel.text = ""
+            cell.dayLabel.text = "."
         }
         return cell
     }
@@ -93,6 +125,11 @@ class MonthDetailViewController : UICollectionViewController {
         let df = NSDateFormatter()
         df.dateFormat = "MMMM"
         return df.stringFromDate(date)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let side: CGFloat = collectionView.frame.size.width / CGFloat(DAYS_PER_WEEK + 1)
+        return CGSize(width: side, height: side)
     }
 }
 
