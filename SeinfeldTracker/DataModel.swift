@@ -34,12 +34,13 @@ class HabitSucceededMO: NSManagedObject{
 }
 
 extension HabitMO {
-    func addSucceededDate(date:NSDate){
+    func addSucceededDate(habitSucceeded:HabitSucceededMO){
         let items = self.mutableSetValueForKey("succeededDates")
-        items.addObject(date)
+        habitSucceeded.habit = self
+        items.addObject(habitSucceeded)
     }
-    func removeSucceededDate(date:NSDate){
+    func removeSucceededDate(habitSucceeded:HabitSucceededMO){
         let items = self.mutableSetValueForKey("succeededDates")
-        items.removeObject(date)
+        items.removeObject(habitSucceeded)
     }
 }
