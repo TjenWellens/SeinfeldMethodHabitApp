@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A42DA7441C46DE4A00D3A087 /* MonthDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DA7431C46DE4A00D3A087 /* MonthDetailViewController.swift */; };
+		A42DA7461C46E35200D3A087 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DA7451C46E35200D3A087 /* DayCell.swift */; };
 		A462CE541C43CE1100832D1B /* AddHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A462CE531C43CE1100832D1B /* AddHabitViewController.swift */; };
 		A47DF0EC1C43D76500693DE2 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DF0EB1C43D76500693DE2 /* Habit.swift */; };
 		A4CA29751C43B0CA008BBFBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA29741C43B0CA008BBFBF /* AppDelegate.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A42DA7431C46DE4A00D3A087 /* MonthDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthDetailViewController.swift; sourceTree = "<group>"; };
+		A42DA7451C46E35200D3A087 /* DayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		A462CE531C43CE1100832D1B /* AddHabitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHabitViewController.swift; sourceTree = "<group>"; };
 		A47DF0EB1C43D76500693DE2 /* Habit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		A4CA29711C43B0CA008BBFBF /* SeinfeldTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeinfeldTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +87,7 @@
 				A4CA297B1C43B0CA008BBFBF /* DetailViewController.swift */,
 				A4CA29791C43B0CA008BBFBF /* MasterViewController.swift */,
 				A462CE531C43CE1100832D1B /* AddHabitViewController.swift */,
+				A42DA7431C46DE4A00D3A087 /* MonthDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -99,6 +104,7 @@
 		A4CA298D1C43B66C008BBFBF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A42DA7451C46E35200D3A087 /* DayCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -175,7 +181,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4CA29781C43B0CA008BBFBF /* SeinfeldTracker.xcdatamodeld in Sources */,
+				A42DA7461C46E35200D3A087 /* DayCell.swift in Sources */,
 				A462CE541C43CE1100832D1B /* AddHabitViewController.swift in Sources */,
+				A42DA7441C46DE4A00D3A087 /* MonthDetailViewController.swift in Sources */,
 				A4CA298F1C43C1F4008BBFBF /* DataModel.swift in Sources */,
 				A47DF0EC1C43D76500693DE2 /* Habit.swift in Sources */,
 				A4CA29751C43B0CA008BBFBF /* AppDelegate.swift in Sources */,

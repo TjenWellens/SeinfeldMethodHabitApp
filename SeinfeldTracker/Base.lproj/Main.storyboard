@@ -102,7 +102,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="40u-yJ-mPu" kind="showDetail" identifier="showHabit" id="AOU-3E-9th"/>
+                                    <segue destination="wRN-vT-R46" kind="showDetail" identifier="showHabit" id="sGP-je-va3"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -291,6 +291,79 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IAF-dH-Xgn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1555" y="-606"/>
+        </scene>
+        <!--Month Detail View Controller-->
+        <scene sceneID="u8w-E7-z2Y">
+            <objects>
+                <collectionViewController id="HNK-5u-fO9" customClass="MonthDetailViewController" customModule="SeinfeldTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="inu-Vc-b3d">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CII-O2-LmG">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DateCell" id="Fbg-4v-BvF" customClass="DayCell" customModule="SeinfeldTracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="114" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zn4-T4-uSR">
+                                            <rect key="frame" x="14.5" y="14.5" width="21" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="zn4-T4-uSR" firstAttribute="centerY" secondItem="Fbg-4v-BvF" secondAttribute="centerY" id="BHd-AW-y5X"/>
+                                    <constraint firstItem="zn4-T4-uSR" firstAttribute="centerX" secondItem="Fbg-4v-BvF" secondAttribute="centerX" id="aUz-Dk-Ooq"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dayLabel" destination="zn4-T4-uSR" id="FDs-H9-OhB"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="t3H-C3-J88">
+                            <rect key="frame" x="0.0" y="64" width="600" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="HNK-5u-fO9" id="nA8-Xd-CSM"/>
+                            <outlet property="delegate" destination="HNK-5u-fO9" id="fKr-bE-YNQ"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="NWW-TR-j9O"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aO0-Oc-3ov" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2299" y="174"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aya-dY-odB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wRN-vT-R46" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lN5-9k-EaL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HNK-5u-fO9" kind="relationship" relationship="rootViewController" id="4vx-MC-kHK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="809-d0-Jxy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1487" y="174"/>
         </scene>
     </scenes>
 </document>
