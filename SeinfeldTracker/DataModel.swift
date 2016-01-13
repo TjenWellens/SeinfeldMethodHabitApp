@@ -24,7 +24,7 @@ class HabitMO: NSManagedObject {
 }
 
 class HabitSucceededMO: NSManagedObject{
-    @NSManaged var date: NSDate?
+    @NSManaged var date: NSDate
     @NSManaged var habit: HabitMO
     
     override func awakeFromInsert() {

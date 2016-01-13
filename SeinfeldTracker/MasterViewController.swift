@@ -82,7 +82,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! HabitMO
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
+                
+                var succeededDates: [NSDate] = []
+                for value in object.succeededDates {
+                    let dateMO = value as! HabitSucceededMO
+                    succeededDates.append(dateMO.date)
+                }
+                
+                let habit = Habit(name: object.name, reminder: object.reminder, succeededDates: succeededDates)
+                
+                controller.habit = habit
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }

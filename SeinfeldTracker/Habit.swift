@@ -10,4 +10,5 @@ import Foundation
 struct Habit {
     let name:String
     let reminder:NSDate?
+    let succeededDates: [NSDate]
 }

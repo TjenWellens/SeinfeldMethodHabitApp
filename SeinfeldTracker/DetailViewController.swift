@@ -11,22 +11,23 @@ import UIKit
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
-
-
-    var detailItem: HabitMO? {
+    
+    var habit: Habit? {
         didSet {
-            // Update the view.
             self.configureView()
         }
     }
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let habit = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = habit.name
-            }
+        guard let habit = self.habit else {
+            return
         }
+        guard let label = self.detailDescriptionLabel else {
+            return
+        }
+        
+        label.text = habit.name
     }
 
     override func viewDidLoad() {
