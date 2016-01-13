@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Nav Master-->
@@ -332,9 +333,44 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="t3H-C3-J88">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MonthHeader" id="t3H-C3-J88" customClass="MonthHeaderReusableView" customModule="SeinfeldTracker" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="64" width="600" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="b2k-g0-PHe">
+                                    <rect key="frame" x="8" y="10" width="584" height="30"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRg-0W-Gfa">
+                                            <rect key="frame" x="0.0" y="0.0" width="195" height="30"/>
+                                            <state key="normal" title="&lt;"/>
+                                            <connections>
+                                                <action selector="navigate:" destination="t3H-C3-J88" eventType="touchUpInside" id="gqF-9Z-Red"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7K-yz-lsq">
+                                            <rect key="frame" x="195" y="0.0" width="195" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nL0-Qc-DyQ">
+                                            <rect key="frame" x="390" y="0.0" width="195" height="30"/>
+                                            <state key="normal" title="&gt;"/>
+                                            <connections>
+                                                <action selector="navigate:" destination="t3H-C3-J88" eventType="touchUpInside" id="g1L-2z-6Sx"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="b2k-g0-PHe" firstAttribute="leading" secondItem="t3H-C3-J88" secondAttribute="leadingMargin" id="3Fz-xd-xeW"/>
+                                <constraint firstItem="b2k-g0-PHe" firstAttribute="centerY" secondItem="t3H-C3-J88" secondAttribute="centerY" id="4e0-VB-og9"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="b2k-g0-PHe" secondAttribute="trailing" id="oJ5-u4-ZYh"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="monthLabel" destination="Q7K-yz-lsq" id="4di-TI-Cmk"/>
+                            </connections>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="HNK-5u-fO9" id="nA8-Xd-CSM"/>
