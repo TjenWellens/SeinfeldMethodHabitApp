@@ -19,7 +19,8 @@ class AddHabitViewController: UIViewController {
     @IBAction func done() {
         let name = nameTxt.text!
         let reminder = datePicker.date
-        habit = Habit(name: name, reminder: reminder, succeededDates: [])
+        let dates = [NSDate(), NSDate(), NSDate()]
+        habit = Habit(name: name, reminder: reminder, succeededDates: dates)
         performSegueWithIdentifier("didAdd", sender: self)
     }
     

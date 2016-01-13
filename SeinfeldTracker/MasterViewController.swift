@@ -112,11 +112,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         habitMO.name = habit.name
         habitMO.reminder = habit.reminder
         
-        let succeededDateMO = NSEntityDescription.insertNewObjectForEntityForName("HabitSucceeded",
-            inManagedObjectContext: context) as! HabitSucceededMO
-        habitMO.addSucceededDate(succeededDateMO)
-//        habitMO.addSucceededDate(NSDate())
-//        habitMO.addSucceededDate(NSDate())
+        for date in habit.succeededDates {
+            let succeededDateMO = NSEntityDescription.insertNewObjectForEntityForName("HabitSucceeded",
+                inManagedObjectContext: context) as! HabitSucceededMO
+            succeededDateMO.date = date
+            habitMO.addSucceededDate(succeededDateMO)
+        }
         
         do {
             try context.save()

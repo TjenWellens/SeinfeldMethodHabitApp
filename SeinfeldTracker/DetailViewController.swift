@@ -10,7 +10,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var datesLabel: UILabel!
     
     var habit: Habit? {
         didSet {
@@ -20,14 +21,16 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        guard let habit = self.habit else {
-            return
-        }
-        guard let label = self.detailDescriptionLabel else {
-            return
-        }
+        guard let habit = self.habit else { return }
+        guard let nameLabel = self.nameLabel else { return }
         
-        label.text = habit.name
+        nameLabel.text = habit.name
+        
+        let df = NSDateFormatter()
+        df.dateFormat = "dd-MM-yyyy"
+        let dateTexts: [String] = habit.succeededDates.map({df.stringFromDate($0)})
+        datesLabel.text = dateTexts.joinWithSeparator(", ")
+        
     }
 
     override func viewDidLoad() {
