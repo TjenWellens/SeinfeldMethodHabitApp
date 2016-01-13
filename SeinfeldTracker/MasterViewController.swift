@@ -83,12 +83,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! HabitMO
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
                 
-                var succeededDates: [NSDate] = []
-                for value in object.succeededDates {
-                    let dateMO = value as! HabitSucceededMO
-                    succeededDates.append(dateMO.date)
-                }
-                
+                let succeededDates: [NSDate] = object.succeededDates.map({($0 as! HabitSucceededMO).date})
                 let habit = Habit(name: object.name, reminder: object.reminder, succeededDates: succeededDates)
                 
                 controller.habit = habit
