@@ -25,44 +25,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
     }
-    
-//    @IBAction func addHabit(sender: UIBarButtonItem) {
-//        // eigen probeersel
-//        let context = self.fetchedResultsController.managedObjectContext
-//        
-//        let habit = NSEntityDescription.insertNewObjectForEntityForName("Habit", inManagedObjectContext: context) as! Habit
-//        habit.name = "FooName"
-//        habit.reminder = nil
-//        habit.addSucceededDate(NSDate())
-//        habit.addSucceededDate(NSDate())
-//        habit.addSucceededDate(NSDate())
-//        
-//        do {
-//            try context.save()
-//        } catch {
-//            fatalError("Failure to save context: \(error)")
-//        }
-//        
-//        // generated
-////
-////        let context = self.fetchedResultsController.managedObjectContext
-////        let entity = self.fetchedResultsController.fetchRequest.entity!
-////        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context)
-////        
-////        // If appropriate, configure the new managed object.
-////        // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-////        newManagedObject.setValue(NSDate(), forKey: "timeStamp")
-////        
-////        // Save the context.
-////        do {
-////            try context.save()
-////        } catch {
-////            // Replace this implementation with code to handle the error appropriately.
-////            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-////            //print("Unresolved error \(error), \(error.userInfo)")
-////            abort()
-////        }
-//    }
 
     override func viewWillAppear(animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
@@ -101,7 +63,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let addController = segue.sourceViewController as! AddHabitViewController
         if let habit = addController.habit {
             addHabit(habit)
-//            collectionView!.reloadData()
         }
     }
     
@@ -156,9 +117,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             do {
                 try context.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                //print("Unresolved error \(error), \(error.userInfo)")
                 abort()
             }
         }
@@ -177,16 +135,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
         
         let fetchRequest = NSFetchRequest()
-        // Edit the entity name as appropriate.
         let entity = NSEntityDescription.entityForName("Habit", inManagedObjectContext: self.managedObjectContext!)
         fetchRequest.entity = entity
         
         // Set the batch size to a suitable number.
         fetchRequest.fetchBatchSize = 20
         
-        // Edit the sort key as appropriate.
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
-        
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         // Edit the section name key path and cache name if appropriate.
@@ -198,9 +153,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         do {
             try _fetchedResultsController!.performFetch()
         } catch {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-             //print("Unresolved error \(error), \(error.userInfo)")
              abort()
         }
         
