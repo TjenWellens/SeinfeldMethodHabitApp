@@ -225,17 +225,14 @@ extension MasterViewController:DataManager {
     func toggleDate(habitMO: HabitMO, date: NSDate) {
         print("toggleDate(habitMO: \(habitMO), date: \(date))")
         if habitMO.containsDate(date) {
-//            deleteDateFromHabit(habitMO, date: date)
             if let habitSucceededMO: HabitSucceededMO = habitMO.findDate(date){
                 deleteObject(habitSucceededMO)
                 habitMO.removeSucceededDate(habitSucceededMO)
             }
-//            removeDateFromHabit(habitMO, date: date)
-//            saveDelete()
         } else {
             addDateToHabit(habitMO, date: date)
-            save()
         }
+        save()
     }
     
     func save() {
@@ -265,16 +262,8 @@ extension MasterViewController:DataManager {
     //    }
     
     func deleteObject(date: HabitSucceededMO){
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext:NSManagedObjectContext = appDelegate.managedObjectContext
-        
-        managedContext.deleteObject(date)
-        
-        do {
-            try managedContext.save()
-        } catch {
-            fatalError("Failure to save context: \(error)")
-        }
+        let context = self.fetchedResultsController.managedObjectContext
+        context.deleteObject(date)
     }
     
 //    func deleteDateFromHabit(habit: HabitMO, date: NSDate) {
