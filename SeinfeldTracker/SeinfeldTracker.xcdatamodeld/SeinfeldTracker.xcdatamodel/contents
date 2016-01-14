@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Automatic">
-    <entity name="Event" representedClassName="">
-        <attribute name="timeStamp" optional="YES" attributeType="Date">
-            <userInfo/>
-        </attribute>
-        <userInfo/>
-    </entity>
     <entity name="Habit" representedClassName=".HabitMO" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="reminder" optional="YES" attributeType="Date" syncable="YES"/>
@@ -16,7 +10,6 @@
         <relationship name="habit" maxCount="1" deletionRule="No Action" destinationEntity="Habit" inverseName="succeededDates" inverseEntity="Habit" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="108" positionY="36" width="128" height="58"/>
         <element name="Habit" positionX="61" positionY="297" width="128" height="90"/>
         <element name="HabitSucceeded" positionX="315" positionY="270" width="128" height="75"/>
     </elements>
