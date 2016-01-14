@@ -9,11 +9,15 @@
 import UIKit
 import CoreData
 
-class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var managedObjectContext: NSManagedObjectContext? = nil
-
+    
+    var dataController: DataController!
+    
+    lazy var fetchedHabits: NSFetchedResultsController = {
+        return self.dataController.createFetchedHabitsController(self)
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +46,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         switch segue.identifier! {
         case "showHabit":
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let habitMO = self.fetchedResultsController.objectAtIndexPath(indexPath) as! HabitMO
+                let habitMO = self.fetchedHabits.objectAtIndexPath(indexPath) as! HabitMO
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MonthDetailViewController
                 
                 controller.habit = habitMO
-                controller.dataMgr = self
+                controller.dataMgr = dataController
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -60,18 +64,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     @IBAction func unwindFromAdd(segue: UIStoryboardSegue) {
         let addController = segue.sourceViewController as! AddHabitViewController
         if let habit = addController.habit {
-            addHabit(habit)
+            dataController.addHabit(habit)
         }
     }
 
     // MARK: - Table View
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.fetchedResultsController.sections?.count ?? 0
+        return self.fetchedHabits.sections?.count ?? 0
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section]
+        let sectionInfo = self.fetchedHabits.sections![section]
         return sectionInfo.numberOfObjects
     }
 
@@ -88,8 +92,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            let context = self.fetchedResultsController.managedObjectContext
-            context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject)
+            let context = self.fetchedHabits.managedObjectContext
+            context.deleteObject(self.fetchedHabits.objectAtIndexPath(indexPath) as! NSManagedObject)
                 
             do {
                 try context.save()
@@ -100,146 +104,55 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        let habitMO = self.fetchedResultsController.objectAtIndexPath(indexPath) as! HabitMO
+        let habitMO = self.fetchedHabits.objectAtIndexPath(indexPath) as! HabitMO
         cell.textLabel!.text = habitMO.name
     }
 
-    // MARK: - Fetched results controller
+}
 
-    var fetchedResultsController: NSFetchedResultsController {
-        if _fetchedResultsController != nil {
-            return _fetchedResultsController!
-        }
-        
-        let fetchRequest = NSFetchRequest()
-        let entity = NSEntityDescription.entityForName("Habit", inManagedObjectContext: self.managedObjectContext!)
-        fetchRequest.entity = entity
-        
-        // Set the batch size to a suitable number.
-        fetchRequest.fetchBatchSize = 20
-        
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        // Edit the section name key path and cache name if appropriate.
-        // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Master")
-        aFetchedResultsController.delegate = self
-        _fetchedResultsController = aFetchedResultsController
-        
-        do {
-            try _fetchedResultsController!.performFetch()
-        } catch {
-             abort()
-        }
-        
-        return _fetchedResultsController!
-    }    
-    var _fetchedResultsController: NSFetchedResultsController? = nil
 
+// Update when changes in data
+extension MasterViewController : NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         self.tableView.beginUpdates()
     }
-
+    
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
         switch type {
-            case .Insert:
-                self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-            case .Delete:
-                self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-            default:
-                return
+        case .Insert:
+            self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .Delete:
+            self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        default:
+            return
         }
     }
-
+    
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
-            case .Insert:
-                tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-            case .Delete:
-                tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-            case .Update:
-                self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
-            case .Move:
-                tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-                tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Update:
+            self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
         }
     }
-
+    
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.endUpdates()
     }
-
+    
     /*
-     // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
-     
-     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-         // In the simplest, most efficient, case, reload the table view.
-         self.tableView.reloadData()
-     }
-     */
-
-}
-
-protocol DataManager {
-    func addHabit(habit: Habit)
-    func toggleDate(habitMO: HabitMO, date: NSDate)
-}
-
-extension MasterViewController: DataManager {
-    func addHabit(habit: Habit) {
-        let context = self.fetchedResultsController.managedObjectContext
-        
-        let habitMO = NSEntityDescription.insertNewObjectForEntityForName("Habit", inManagedObjectContext: context) as! HabitMO
-        habitMO.name = habit.name
-        habitMO.reminder = habit.reminder
-        
-        addDatesToHabit(habitMO, dates: habit.succeededDates)
-        
-        save()
-    }
+    // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
     
-    func addDatesToHabit(habitMO: HabitMO, dates: [NSDate]) {
-        let context = self.fetchedResultsController.managedObjectContext
-        
-        for date in dates {
-            let dayDate = Month.stripTime(date)
-            let succeededDateMO = NSEntityDescription.insertNewObjectForEntityForName("HabitSucceeded",
-                inManagedObjectContext: context) as! HabitSucceededMO
-            succeededDateMO.date = dayDate
-            habitMO.addSucceededDate(succeededDateMO)
-        }
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    // In the simplest, most efficient, case, reload the table view.
+    self.tableView.reloadData()
     }
-    
-    func addDateToHabit(habitMO: HabitMO, date: NSDate){
-        addDatesToHabit(habitMO, dates: [date])
-    }
-    
-    func removeDateFromHabit(habitMO: HabitMO, date: NSDate) {
-        let context = self.fetchedResultsController.managedObjectContext
-        if let habitSucceededMO: HabitSucceededMO = habitMO.findDate(date){
-            context.deleteObject(habitSucceededMO)
-            habitMO.removeSucceededDate(habitSucceededMO)
-        }
-    }
-    
-    func toggleDate(habitMO: HabitMO, date: NSDate) {
-        if habitMO.containsDate(date) {
-            removeDateFromHabit(habitMO, date: date)
-        } else {
-            addDateToHabit(habitMO, date: date)
-        }
-        save()
-    }
-    
-    func save() {
-        let context = self.fetchedResultsController.managedObjectContext
-        
-        guard context.hasChanges else { return }
-        
-        do { try context.save() } catch {
-            fatalError("Failure to save context: \(error)")
-        }
-    }
+    */
 }
 
