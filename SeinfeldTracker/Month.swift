@@ -10,10 +10,11 @@ import Foundation
 
 class Month {
     static let DAYS_PER_WEEK = 7
+    static let CAL = NSCalendar.currentCalendar()
     
     // first day of selected month
     var date: NSDate = Month.getFirstDayOfMonth(NSDate())
-    let calendar = NSCalendar.currentCalendar()
+    let calendar = Month.CAL
     
     var offsetFirstDay: Int {
         let weekday = calendar.component(.Weekday, fromDate: date)
@@ -49,14 +50,13 @@ class Month {
     }
     
     static func getDayOfMonth(day: Int, monthDate: NSDate, nilNotInMonth: Bool) -> NSDate? {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Month, .Year], fromDate: monthDate)
+        let components = CAL.components([.Month, .Year], fromDate: monthDate)
         components.day = day
         
-        let date = calendar.dateFromComponents(components)!
+        let date = CAL.dateFromComponents(components)!
         
         // check if still same month
-        let month = calendar.component(.Month, fromDate: date)
+        let month = CAL.component(.Month, fromDate: date)
         if nilNotInMonth && components.month != month {
             return nil
         }
@@ -81,11 +81,31 @@ class Month {
     }
     
     static func stripTime(dateTime: NSDate) -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day, .Month, .Year], fromDate: dateTime)
-        return calendar.dateFromComponents(components)!
+        let components = CAL.components([.Day, .Month, .Year], fromDate: dateTime)
+        return CAL.dateFromComponents(components)!
     }
     
+    static func previousDay(date: NSDate) -> NSDate {
+        return CAL.dateByAddingUnit(.Day, value: -1, toDate: date, options: NSCalendarOptions())!
+    }
+    
+    static func calculateStreak(habit: HabitMO) -> Int {
+        let today = Month.stripTime(NSDate())
+        let yesterday = Month.previousDay(today)
+        var counter = 0
+        
+        if habit.containsDate(today) {
+            counter = 1
+        }
+        
+        var date = yesterday
+        while habit.containsDate(date) {
+            counter += 1
+            date = Month.previousDay(date)
+        }
+        
+        return counter
+    }
 }
 
 extension Month: NavigateDate {

@@ -22,6 +22,18 @@ class MonthDetailViewController : UICollectionViewController {
     
     var monthHeader: MonthHeaderReusableView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateTitle()
+    }
+    
+    func updateTitle(){
+        if let habit = habit {
+            self.title = "\(habit.name) (\(Month.calculateStreak(habit)))"
+            
+        }
+    }
+    
     func dayNumberForIndexPath(indexPath: NSIndexPath, nilNotInMonth: Bool = true) -> Int? {
         return month.dayNumberForIndex(indexPath.row, nilNotInMonth: nilNotInMonth)
     }
@@ -88,6 +100,7 @@ class MonthDetailViewController : UICollectionViewController {
         let date = month.dateForDayNr(dayNr)
         dataMgr.toggleDate(habit, date: date)
         self.collectionView!.reloadItemsAtIndexPaths([indexPath])
+        updateTitle()
     }
     
     func updateMonthGUI(){
