@@ -24,12 +24,3 @@ class MonthHeaderReusableView: UICollectionReusableView {
         }
     }
 }
-
-protocol NavigateDate {
-    func navigateDate(direction: DateDirection)
-}
-
-enum DateDirection {
-    case Past
-    case Future
-}

@@ -302,21 +302,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CII-O2-LmG">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="123" height="123"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DateCell" id="Fbg-4v-BvF" customClass="DayCell" customModule="SeinfeldTracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="114" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="114" width="123" height="123"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zn4-T4-uSR">
-                                            <rect key="frame" x="14.5" y="14.5" width="21" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zn4-T4-uSR">
+                                            <rect key="frame" x="8" y="8" width="107" height="107"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -325,8 +325,10 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="zn4-T4-uSR" firstAttribute="centerY" secondItem="Fbg-4v-BvF" secondAttribute="centerY" id="BHd-AW-y5X"/>
-                                    <constraint firstItem="zn4-T4-uSR" firstAttribute="centerX" secondItem="Fbg-4v-BvF" secondAttribute="centerX" id="aUz-Dk-Ooq"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="zn4-T4-uSR" secondAttribute="bottom" id="0gl-kG-naF"/>
+                                    <constraint firstItem="zn4-T4-uSR" firstAttribute="leading" secondItem="Fbg-4v-BvF" secondAttribute="leadingMargin" id="6JD-Lj-RB3"/>
+                                    <constraint firstItem="zn4-T4-uSR" firstAttribute="top" secondItem="Fbg-4v-BvF" secondAttribute="topMargin" id="Hlq-zs-Fme"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="zn4-T4-uSR" secondAttribute="trailing" id="gZF-lW-sTQ"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="dayLabel" destination="zn4-T4-uSR" id="FDs-H9-OhB"/>
