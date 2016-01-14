@@ -3,22 +3,20 @@ Don't break the chain!
 
 Still is a work in progress
 
-Description
+## Description
 
-Features
+## Features
 
-
-
-FRAMEWORKS
+## Frameworks
 - Core Data
-!- Local Notification
+- *Local Notification*
 
-DETAILED:
+## Detailed Contents:
 - MVC & Delegation 
-!- Auto Layout and Size Classes
+- *Auto Layout and Size Classes*
 - StoryBoard, Segues
 - Common ViewControllers:
-- - UINavigationController
-- - UISplitViewController
-!- - UITabBarController
+  - UINavigationController
+  - UISplitViewController
+  - *UITabBarController*
 - UICollectionView
