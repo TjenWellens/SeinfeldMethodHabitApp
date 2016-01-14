@@ -33,7 +33,6 @@ extension HabitMO {
     }
     func removeSucceededDate(habitSucceeded:HabitSucceededMO){
         let items = self.mutableSetValueForKey("succeededDates")
-        print("HabitMO.removeSucceededDate(\(habitSucceeded))")
         items.removeObject(habitSucceeded)
     }
 }

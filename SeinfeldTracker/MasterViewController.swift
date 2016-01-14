@@ -224,7 +224,6 @@ extension MasterViewController: DataManager {
     }
     
     func toggleDate(habitMO: HabitMO, date: NSDate) {
-        print("toggleDate(habitMO: \(habitMO), date: \(date))")
         if habitMO.containsDate(date) {
             removeDateFromHabit(habitMO, date: date)
         } else {

@@ -86,7 +86,6 @@ class MonthDetailViewController : UICollectionViewController {
         }
         
         let date = month.dateForDayNr(dayNr)
-        print("MontView.click(date: \(date))")
         dataMgr.toggleDate(habit, date: date)
         self.collectionView!.reloadItemsAtIndexPaths([indexPath])
     }
