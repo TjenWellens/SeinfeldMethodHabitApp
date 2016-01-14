@@ -19,4 +19,4 @@ Still is a work in progress
   - UINavigationController
   - UISplitViewController
   - *UITabBarController*
-- UICollectionView
+- UITableView & UICollectionView
