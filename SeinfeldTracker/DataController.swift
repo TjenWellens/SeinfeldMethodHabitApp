@@ -1,5 +1,9 @@
 //
-//  // Source: https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreData/InitializingtheCoreDataStack.html#//apple_ref/doc/uid/TP40001075-CH4-SW1
+//  DataController.swift
+//  SeinfeldTracker
+//
+//  Created by Tjen Wellens on 14/01/16.
+//  Copyright © 2016 TjenWellens. All rights reserved.
 //
 
 import UIKit
@@ -31,20 +35,6 @@ class DataController {
         // 3) ManagedObjectContext
         self.managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         self.managedObjectContext.persistentStoreCoordinator = psc
-        
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-//            let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-//            let docURL = urls[urls.endIndex-1]
-//            /* The directory the application uses to store the Core Data store file.
-//            This code uses a file named "DataModel.sqlite" in the application's documents directory.
-//            */
-//            let storeURL = docURL.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
-//            do {
-//                try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
-//            } catch {
-//                fatalError("Error migrating store: \(error)")
-//            }
-//        }
     }
     
     func createFetchedHabitsController(delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController {
@@ -62,7 +52,6 @@ class DataController {
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
         let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: "Master")
-        // TODO
         aFetchedResultsController.delegate = delegate
         
         do {
@@ -74,29 +63,18 @@ class DataController {
         return aFetchedResultsController
     }
     
-    // MARK: - Core Data Saving support
-    
     func saveContext () {
         if managedObjectContext.hasChanges {
             do {
                 try managedObjectContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-                abort()
+                fatalError("Error saving context")
             }
         }
     }
 }
 
-protocol DataManager {
-    func addHabit(habit: Habit)
-    func toggleDate(habitMO: HabitMO, date: NSDate)
-}
-
-extension DataController: DataManager {
+extension DataController: HabitDataManager {
     func addHabit(habit: Habit) {
         let context = self.managedObjectContext
         

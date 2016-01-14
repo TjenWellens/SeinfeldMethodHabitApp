@@ -14,6 +14,7 @@
 		A42DA74C1C47DEFB00D3A087 /* NavigateDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DA74B1C47DEFB00D3A087 /* NavigateDate.swift */; };
 		A42DA74E1C47DF1A00D3A087 /* NavigateDateDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DA74D1C47DF1A00D3A087 /* NavigateDateDirection.swift */; };
 		A42DA7501C48396A00D3A087 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DA74F1C48396A00D3A087 /* DataController.swift */; };
+		A42DA7521C48470300D3A087 /* HabitDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DA7511C48470300D3A087 /* HabitDataManager.swift */; };
 		A462CE541C43CE1100832D1B /* AddHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A462CE531C43CE1100832D1B /* AddHabitViewController.swift */; };
 		A47DF0EC1C43D76500693DE2 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DF0EB1C43D76500693DE2 /* Habit.swift */; };
 		A4CA29751C43B0CA008BBFBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA29741C43B0CA008BBFBF /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 		A42DA74B1C47DEFB00D3A087 /* NavigateDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigateDate.swift; sourceTree = "<group>"; };
 		A42DA74D1C47DF1A00D3A087 /* NavigateDateDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigateDateDirection.swift; sourceTree = "<group>"; };
 		A42DA74F1C48396A00D3A087 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		A42DA7511C48470300D3A087 /* HabitDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitDataManager.swift; sourceTree = "<group>"; };
 		A462CE531C43CE1100832D1B /* AddHabitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHabitViewController.swift; sourceTree = "<group>"; };
 		A47DF0EB1C43D76500693DE2 /* Habit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		A4CA29711C43B0CA008BBFBF /* SeinfeldTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeinfeldTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +113,7 @@
 				A42DA74B1C47DEFB00D3A087 /* NavigateDate.swift */,
 				A42DA74D1C47DF1A00D3A087 /* NavigateDateDirection.swift */,
 				A42DA74F1C48396A00D3A087 /* DataController.swift */,
+				A42DA7511C48470300D3A087 /* HabitDataManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				A42DA7461C46E35200D3A087 /* DayCell.swift in Sources */,
 				A462CE541C43CE1100832D1B /* AddHabitViewController.swift in Sources */,
 				A42DA74E1C47DF1A00D3A087 /* NavigateDateDirection.swift in Sources */,
+				A42DA7521C48470300D3A087 /* HabitDataManager.swift in Sources */,
 				A42DA74A1C47DE8000D3A087 /* Month.swift in Sources */,
 				A42DA7441C46DE4A00D3A087 /* MonthDetailViewController.swift in Sources */,
 				A4CA298F1C43C1F4008BBFBF /* DataModel.swift in Sources */,
