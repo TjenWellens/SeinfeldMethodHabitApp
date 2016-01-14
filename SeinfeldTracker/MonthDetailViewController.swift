@@ -81,8 +81,7 @@ class MonthDetailViewController : UICollectionViewController {
         case UICollectionElementKindSectionHeader:
             monthHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: reuseMonthHeaderIdentifier, forIndexPath: indexPath) as! MonthHeaderReusableView
             monthHeader.callback = self
-            monthHeader.monthLabel.text = month.name +
-            ", \(month.dateName)"
+            monthHeader.monthLabel.text = month.name
             return monthHeader
         default:
             fatalError("Unknown viewtype in \(self.dynamicType).")
