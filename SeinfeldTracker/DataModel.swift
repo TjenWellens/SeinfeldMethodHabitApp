@@ -43,18 +43,6 @@ extension HabitMO {
         return succeededDates.contains({return ($0 as! HabitSucceededMO).date == dayDate})
     }
     
-    func deleteDate(dayDate: NSDate) -> Bool {
-        // todo: optimize
-        for item in succeededDates {
-            let dateMO = item as! HabitSucceededMO
-            if dateMO.date == dayDate{
-                removeSucceededDate(dateMO)
-                return true
-            }
-        }
-        return false
-    }
-    
     func findDate(dayDate: NSDate) -> HabitSucceededMO? {
         for item in succeededDates {
             let dateMO = item as! HabitSucceededMO
