@@ -48,7 +48,7 @@ class MonthDetailViewController : UICollectionViewController {
         var fill = UIColor.lightGrayColor().CGColor
         var border = UIColor.lightGrayColor().CGColor
         
-        let dayNr = dayNumberForIndexPath(indexPath, nilNotInMonth: false)
+        let dayNr = dayNumberForIndexPath(indexPath)
         if let dayNr = dayNr {
             let dayDate: NSDate = month.dateForDayNr(dayNr)
             if habit!.containsDate(dayDate) {
