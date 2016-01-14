@@ -80,6 +80,12 @@ class Month {
         return df.stringFromDate(date)
     }
     
+    static func stripTime(dateTime: NSDate) -> NSDate {
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day, .Month, .Year], fromDate: dateTime)
+        return calendar.dateFromComponents(components)!
+    }
+    
 }
 
 extension Month: NavigateDate {

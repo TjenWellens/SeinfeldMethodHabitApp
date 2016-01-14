@@ -47,7 +47,8 @@ extension HabitMO {
 
 extension HabitMO {
     func containsDate(dayDate: NSDate) -> Bool {
-        // todo
-        return true
+        return succeededDates.contains({
+            return ($0 as! HabitSucceededMO).date == dayDate
+        })
     }
 }
