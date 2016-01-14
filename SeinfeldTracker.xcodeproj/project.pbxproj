@@ -15,6 +15,7 @@
 		A42DA74E1C47DF1A00D3A087 /* NavigateDateDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DA74D1C47DF1A00D3A087 /* NavigateDateDirection.swift */; };
 		A42DA7501C48396A00D3A087 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DA74F1C48396A00D3A087 /* DataController.swift */; };
 		A42DA7521C48470300D3A087 /* HabitDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DA7511C48470300D3A087 /* HabitDataManager.swift */; };
+		A42DA7551C48492200D3A087 /* HabitSucceededMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DA7541C48492200D3A087 /* HabitSucceededMO.swift */; };
 		A462CE541C43CE1100832D1B /* AddHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A462CE531C43CE1100832D1B /* AddHabitViewController.swift */; };
 		A47DF0EC1C43D76500693DE2 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DF0EB1C43D76500693DE2 /* Habit.swift */; };
 		A4CA29751C43B0CA008BBFBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA29741C43B0CA008BBFBF /* AppDelegate.swift */; };
@@ -24,7 +25,7 @@
 		A4CA297F1C43B0CA008BBFBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4CA297D1C43B0CA008BBFBF /* Main.storyboard */; };
 		A4CA29811C43B0CA008BBFBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4CA29801C43B0CA008BBFBF /* Assets.xcassets */; };
 		A4CA29841C43B0CA008BBFBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4CA29821C43B0CA008BBFBF /* LaunchScreen.storyboard */; };
-		A4CA298F1C43C1F4008BBFBF /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA298E1C43C1F4008BBFBF /* DataModel.swift */; };
+		A4CA298F1C43C1F4008BBFBF /* HabitMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA298E1C43C1F4008BBFBF /* HabitMO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		A42DA74D1C47DF1A00D3A087 /* NavigateDateDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigateDateDirection.swift; sourceTree = "<group>"; };
 		A42DA74F1C48396A00D3A087 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		A42DA7511C48470300D3A087 /* HabitDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitDataManager.swift; sourceTree = "<group>"; };
+		A42DA7541C48492200D3A087 /* HabitSucceededMO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitSucceededMO.swift; sourceTree = "<group>"; };
 		A462CE531C43CE1100832D1B /* AddHabitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHabitViewController.swift; sourceTree = "<group>"; };
 		A47DF0EB1C43D76500693DE2 /* Habit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		A4CA29711C43B0CA008BBFBF /* SeinfeldTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeinfeldTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,7 +49,7 @@
 		A4CA29801C43B0CA008BBFBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4CA29831C43B0CA008BBFBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4CA29851C43B0CA008BBFBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A4CA298E1C43C1F4008BBFBF /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		A4CA298E1C43C1F4008BBFBF /* HabitMO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitMO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A42DA7531C4848FB00D3A087 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A42DA74F1C48396A00D3A087 /* DataController.swift */,
+				A4CA298E1C43C1F4008BBFBF /* HabitMO.swift */,
+				A42DA7541C48492200D3A087 /* HabitSucceededMO.swift */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		A4CA29681C43B0CA008BBFBF = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +92,7 @@
 		A4CA29731C43B0CA008BBFBF /* SeinfeldTracker */ = {
 			isa = PBXGroup;
 			children = (
+				A42DA7531C4848FB00D3A087 /* CoreData */,
 				A4CA298D1C43B66C008BBFBF /* Views */,
 				A4CA298C1C43B664008BBFBF /* Model */,
 				A4CA298B1C43B65F008BBFBF /* Controllers */,
@@ -107,12 +120,10 @@
 		A4CA298C1C43B664008BBFBF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A4CA298E1C43C1F4008BBFBF /* DataModel.swift */,
 				A47DF0EB1C43D76500693DE2 /* Habit.swift */,
 				A42DA7491C47DE8000D3A087 /* Month.swift */,
 				A42DA74B1C47DEFB00D3A087 /* NavigateDate.swift */,
 				A42DA74D1C47DF1A00D3A087 /* NavigateDateDirection.swift */,
-				A42DA74F1C48396A00D3A087 /* DataController.swift */,
 				A42DA7511C48470300D3A087 /* HabitDataManager.swift */,
 			);
 			name = Model;
@@ -205,11 +216,12 @@
 				A42DA7521C48470300D3A087 /* HabitDataManager.swift in Sources */,
 				A42DA74A1C47DE8000D3A087 /* Month.swift in Sources */,
 				A42DA7441C46DE4A00D3A087 /* MonthDetailViewController.swift in Sources */,
-				A4CA298F1C43C1F4008BBFBF /* DataModel.swift in Sources */,
+				A4CA298F1C43C1F4008BBFBF /* HabitMO.swift in Sources */,
 				A42DA7501C48396A00D3A087 /* DataController.swift in Sources */,
 				A47DF0EC1C43D76500693DE2 /* Habit.swift in Sources */,
 				A4CA29751C43B0CA008BBFBF /* AppDelegate.swift in Sources */,
 				A4CA297A1C43B0CA008BBFBF /* MasterViewController.swift in Sources */,
+				A42DA7551C48492200D3A087 /* HabitSucceededMO.swift in Sources */,
 				A4CA297C1C43B0CA008BBFBF /* DetailViewController.swift in Sources */,
 				A42DA74C1C47DEFB00D3A087 /* NavigateDate.swift in Sources */,
 				A42DA7481C46F1C800D3A087 /* MonthHeaderReusableView.swift in Sources */,

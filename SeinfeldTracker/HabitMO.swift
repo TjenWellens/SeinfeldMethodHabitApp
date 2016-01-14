@@ -8,9 +8,6 @@
 
 import UIKit
 import CoreData
-import Foundation
-
-// HABIT
 
 class HabitMO: NSManagedObject {
     
@@ -50,17 +47,5 @@ extension HabitMO {
             }
         }
         return nil
-    }
-}
-
-// DATE
-
-class HabitSucceededMO: NSManagedObject {
-    @NSManaged var date: NSDate
-    @NSManaged var habit: HabitMO
-    
-    override func awakeFromInsert() {
-        super.awakeFromInsert()
-        self.date = NSDate()
     }
 }
