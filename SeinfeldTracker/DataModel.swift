@@ -44,3 +44,10 @@ extension HabitMO {
         items.removeObject(habitSucceeded)
     }
 }
+
+extension HabitMO {
+    func containsDate(dayDate: NSDate) -> Bool {
+        // todo
+        return true
+    }
+}

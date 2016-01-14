@@ -31,20 +31,24 @@ class Month {
         return calendar.component(.Day, fromDate: date)
     }
     
-    func dayNumberForIndex(index: Int) -> Int? {
+    func dayNumberForIndex(index: Int, nilNotInMonth: Bool) -> Int? {
         let index = index + 1 - offsetFirstDay
-        guard index > 0 else {
+        if nilNotInMonth && index <= 0 {
             return nil
         }
         
-        let dayDate = Month.getDayOfMonth(index, monthDate: date)
+        let dayDate = Month.getDayOfMonth(index, monthDate: date, nilNotInMonth: nilNotInMonth)
         if let dateUnwrapped = dayDate {
             return calendar.component(.Day, fromDate: dateUnwrapped)
         }
         return nil
     }
     
-    static func getDayOfMonth(day: Int, monthDate: NSDate) -> NSDate? {
+    func dateForDayNr(dayNr: Int) -> NSDate {
+        return calendar.dateByAddingUnit(.Day, value: dayNr - 1, toDate: date, options: NSCalendarOptions())!
+    }
+    
+    static func getDayOfMonth(day: Int, monthDate: NSDate, nilNotInMonth: Bool) -> NSDate? {
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components([.Month, .Year], fromDate: monthDate)
         components.day = day
@@ -53,14 +57,15 @@ class Month {
         
         // check if still same month
         let month = calendar.component(.Month, fromDate: date)
-        guard components.month == month else {
+        if nilNotInMonth && components.month != month {
             return nil
         }
+        
         return date
     }
     
     static func getFirstDayOfMonth(date: NSDate) -> NSDate{
-        return Month.getDayOfMonth(1, monthDate: date)!
+        return Month.getDayOfMonth(1, monthDate: date, nilNotInMonth: true)!
     }
     
     static func getMonthText(date: NSDate) -> String {

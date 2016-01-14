@@ -15,14 +15,14 @@ class MonthDetailViewController : UICollectionViewController {
     let reuseMonthHeaderIdentifier = "MonthHeader"
     let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     
-    var habit: Habit?
+    var habit: HabitMO?
     
     let month: Month = Month()
     
     var monthHeader: MonthHeaderReusableView!
     
-    func dayNumberForIndexPath(indexPath: NSIndexPath) -> Int? {
-        return month.dayNumberForIndex(indexPath.row)
+    func dayNumberForIndexPath(indexPath: NSIndexPath, nilNotInMonth: Bool = true) -> Int? {
+        return month.dayNumberForIndex(indexPath.row, nilNotInMonth: nilNotInMonth)
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -38,17 +38,29 @@ class MonthDetailViewController : UICollectionViewController {
         if let day = dayNumberForIndexPath(indexPath) {
             cell.dayLabel.text = "\(day)"
         }else {
-            cell.dayLabel.text = "."
+            cell.dayLabel.text = ""
         }
         return cell
     }
     
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        var fill = UIColor.lightGrayColor().CGColor
+        var border = UIColor.lightGrayColor().CGColor
+        
+        let dayNr = dayNumberForIndexPath(indexPath, nilNotInMonth: false)
+        if let dayNr = dayNr {
+            let dayDate: NSDate = month.dateForDayNr(dayNr)
+            if habit!.containsDate(dayDate) {
+                fill = UIColor.greenColor().CGColor
+                border = UIColor.darkGrayColor().CGColor
+            }
+        }
+        
         let cell = cell as! DayCell
         cell.dayLabel.layer.cornerRadius = cell.dayLabel.bounds.width / CGFloat(2 + 1)
         cell.dayLabel.layer.borderWidth = 3
-        cell.dayLabel.layer.backgroundColor = UIColor.clearColor().CGColor
-        cell.dayLabel.layer.borderColor = UIColor.greenColor().CGColor
+        cell.dayLabel.layer.backgroundColor = fill
+        cell.dayLabel.layer.borderColor = border
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {

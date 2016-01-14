@@ -42,13 +42,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         switch segue.identifier! {
         case "showHabit":
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! HabitMO
+                let habitMO = self.fetchedResultsController.objectAtIndexPath(indexPath) as! HabitMO
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MonthDetailViewController
                 
-                let succeededDates: [NSDate] = object.succeededDates.map({($0 as! HabitSucceededMO).date})
-                let habit = Habit(name: object.name, reminder: object.reminder, succeededDates: succeededDates)
+//                let succeededDates: [NSDate] = habitMO.succeededDates.map({($0 as! HabitSucceededMO).date})
+//                let habit = Habit(name: habitMO.name, reminder: habitMO.reminder, succeededDates: succeededDates)
                 
-                controller.habit = habit
+                controller.habit = habitMO
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
