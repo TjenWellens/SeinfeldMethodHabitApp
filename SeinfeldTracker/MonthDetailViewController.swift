@@ -16,6 +16,7 @@ class MonthDetailViewController : UICollectionViewController {
     let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     
     var habit: HabitMO?
+    var dataMgr: DataManager?
     
     let month: Month = Month()
     
@@ -77,7 +78,17 @@ class MonthDetailViewController : UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        guard let habit = habit, let dataMgr = dataMgr else {
+            return
+        }
+        guard let dayNr = dayNumberForIndexPath(indexPath) else {
+            return
+        }
         
+        let date = month.dateForDayNr(dayNr)
+        print("MontView.click(date: \(date))")
+        dataMgr.toggleDate(habit, date: date)
+        self.collectionView!.reloadItemsAtIndexPaths([indexPath])
     }
     
     func updateMonthGUI(){

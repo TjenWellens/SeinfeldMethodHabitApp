@@ -12,8 +12,8 @@
         <relationship name="succeededDates" toMany="YES" deletionRule="Cascade" destinationEntity="HabitSucceeded" inverseName="habit" inverseEntity="HabitSucceeded" syncable="YES"/>
     </entity>
     <entity name="HabitSucceeded" representedClassName=".HabitSucceededMO" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="habit" maxCount="1" deletionRule="Nullify" destinationEntity="Habit" inverseName="succeededDates" inverseEntity="Habit" syncable="YES"/>
+        <attribute name="date" attributeType="Date" syncable="YES"/>
+        <relationship name="habit" maxCount="1" deletionRule="No Action" destinationEntity="Habit" inverseName="succeededDates" inverseEntity="Habit" syncable="YES"/>
     </entity>
     <elements>
         <element name="Event" positionX="108" positionY="36" width="128" height="58"/>

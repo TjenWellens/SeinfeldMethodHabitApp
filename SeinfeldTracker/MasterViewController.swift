@@ -45,10 +45,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 let habitMO = self.fetchedResultsController.objectAtIndexPath(indexPath) as! HabitMO
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MonthDetailViewController
                 
-//                let succeededDates: [NSDate] = habitMO.succeededDates.map({($0 as! HabitSucceededMO).date})
-//                let habit = Habit(name: habitMO.name, reminder: habitMO.reminder, succeededDates: succeededDates)
-                
                 controller.habit = habitMO
+                controller.dataMgr = self
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -63,27 +61,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let addController = segue.sourceViewController as! AddHabitViewController
         if let habit = addController.habit {
             addHabit(habit)
-        }
-    }
-    
-    func addHabit(habit: Habit) {
-        let context = self.fetchedResultsController.managedObjectContext
-        
-        let habitMO = NSEntityDescription.insertNewObjectForEntityForName("Habit", inManagedObjectContext: context) as! HabitMO
-        habitMO.name = habit.name
-        habitMO.reminder = habit.reminder
-        
-        for date in habit.succeededDates {
-            let succeededDateMO = NSEntityDescription.insertNewObjectForEntityForName("HabitSucceeded",
-                inManagedObjectContext: context) as! HabitSucceededMO
-            succeededDateMO.date = date
-            habitMO.addSucceededDate(succeededDateMO)
-        }
-        
-        do {
-            try context.save()
-        } catch {
-            fatalError("Failure to save context: \(error)")
         }
     }
 
@@ -202,5 +179,193 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
      }
      */
 
+}
+
+protocol DataManager {
+    func addHabit(habit: Habit)
+//    func addDatesToHabit(habitMO: HabitMO, dates: [NSDate])
+//    func addDateToHabit(habitMO: HabitMO, date: NSDate)
+    func toggleDate(habitMO: HabitMO, date: NSDate)
+
+}
+
+extension MasterViewController:DataManager {
+    func addHabit(habit: Habit) {
+        let context = self.fetchedResultsController.managedObjectContext
+        
+        let habitMO = NSEntityDescription.insertNewObjectForEntityForName("Habit", inManagedObjectContext: context) as! HabitMO
+        habitMO.name = habit.name
+        habitMO.reminder = habit.reminder
+        
+        addDatesToHabit(habitMO, dates: habit.succeededDates)
+        
+        save()
+    }
+    
+    func addDatesToHabit(habitMO: HabitMO, dates: [NSDate]) {
+        let context = self.fetchedResultsController.managedObjectContext
+        
+        for date in dates {
+            let dayDate = Month.stripTime(date)
+            let succeededDateMO = NSEntityDescription.insertNewObjectForEntityForName("HabitSucceeded",
+                inManagedObjectContext: context) as! HabitSucceededMO
+            succeededDateMO.date = dayDate
+            habitMO.addSucceededDate(succeededDateMO)
+        }
+    }
+    
+    func addDateToHabit(habitMO: HabitMO, date: NSDate){
+        addDatesToHabit(habitMO, dates: [date])
+    }
+    
+    func removeDateFromHabit(habitMO: HabitMO, date: NSDate) {
+        habitMO.deleteDate(date)
+    }
+    
+    func toggleDate(habitMO: HabitMO, date: NSDate) {
+        print("toggleDate(habitMO: \(habitMO), date: \(date))")
+        if habitMO.containsDate(date) {
+//            deleteDateFromHabit(habitMO, date: date)
+            if let habitSucceededMO: HabitSucceededMO = habitMO.findDate(date){
+                deleteObject(habitSucceededMO)
+                habitMO.removeSucceededDate(habitSucceededMO)
+            }
+//            removeDateFromHabit(habitMO, date: date)
+//            saveDelete()
+        } else {
+            addDateToHabit(habitMO, date: date)
+            save()
+        }
+    }
+    
+    func save() {
+        let context = self.fetchedResultsController.managedObjectContext
+        
+        guard context.hasChanges else {
+            return
+        }
+        
+        do {
+            try context.save()
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
+        
+    }
+    
+//    func saveDelete(){
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let managedContext:NSManagedObjectContext = appDelegate.managedObjectContext
+//        
+//        do {
+//            try managedContext.save()
+//        } catch {
+//            fatalError("Failure to save context: \(error)")
+//        }
+    //    }
+    
+    func deleteObject(date: HabitSucceededMO){
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext:NSManagedObjectContext = appDelegate.managedObjectContext
+        
+        managedContext.deleteObject(date)
+        
+        do {
+            try managedContext.save()
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
+    }
+    
+//    func deleteDateFromHabit(habit: HabitMO, date: NSDate) {
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let managedContext:NSManagedObjectContext = appDelegate.managedObjectContext
+//        
+//        managedContext.deleteObject(date)
+//        
+//        do {
+//            try managedContext.save()
+//        } catch {
+//            fatalError("Failure to save context: \(error)")
+//        }
+//    }
+    
+    func deleteDateFromHabit(habit: HabitMO, date: NSDate) {
+        
+        //        var personRef: HabitMO = existingItem as! HabitMO
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext:NSManagedObjectContext = appDelegate.managedObjectContext
+        
+        let fetchRequest = NSFetchRequest(entityName:"HabitSucceeded")
+        let predicate = NSPredicate(format: "habit == %@", habit)
+        fetchRequest.predicate = predicate
+        
+//        var error: NSError? = nil
+        var locationArray: [AnyObject]
+        
+        do{
+            try locationArray = managedContext.executeFetchRequest(fetchRequest)
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
+        
+        var deleteThisObject:HabitSucceededMO? = nil
+        
+        for obj in locationArray {
+            let dateMO = obj as! HabitSucceededMO
+            if dateMO.date == date {
+                deleteThisObject = dateMO
+                break
+            }
+        }
+        
+        if let object = deleteThisObject {
+            managedContext.deleteObject(object as NSManagedObject)
+        }
+        
+//        managedContext.deleteObject(locationArray[rowIndex.row] as NSManagedObject)
+//        locationArray.removeAtIndex(rowIndex.row)
+//        tableview.deleteRowsAtIndexPaths([rowIndex], withRowAnimation: UITableViewRowAnimation.Fade)
+        
+//        if (!managedContext.save(&error)){
+//            abort()
+//        }
+        
+        do {
+            try managedContext.save()
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
+        
+    }
+    
+//    func deleteTrigger(habit: HabitMO){
+//        
+//        //        var personRef: HabitMO = existingItem as! HabitMO
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let managedContext:NSManagedObjectContext = appDelegate.managedObjectContext
+//        
+//        let fetchRequest = NSFetchRequest(entityName:"HabitSucceeded")
+//        let predicate = NSPredicate(format: "Habit == %@", habit)
+//        fetchRequest.predicate = predicate
+//        
+//        var error: NSError? = nil
+//        var locationArray: [AnyObject]
+//        
+//        do{
+//            try locationArray = managedContext.executeFetchRequest(fetchRequest)
+//        } catch {
+//            fatalError("Failure to save context: \(error)")
+//        }
+//        
+//        managedContext.deleteObject(locationArray[rowIndex.row] as NSManagedObject)
+//        locationArray.removeAtIndex(rowIndex.row)
+//        tableview.deleteRowsAtIndexPaths([rowIndex], withRowAnimation: UITableViewRowAnimation.Fade)
+//        
+//        if (!managedContext.save(&error)){
+//            abort()
+//        }
+//        
+//    }
 }
 

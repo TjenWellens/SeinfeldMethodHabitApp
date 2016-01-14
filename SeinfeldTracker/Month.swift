@@ -45,7 +45,7 @@ class Month {
     }
     
     func dateForDayNr(dayNr: Int) -> NSDate {
-        return calendar.dateByAddingUnit(.Day, value: dayNr - 1, toDate: date, options: NSCalendarOptions())!
+        return calendar.dateByAddingUnit(.Day, value: dayNr, toDate: date, options: NSCalendarOptions())!
     }
     
     static func getDayOfMonth(day: Int, monthDate: NSDate, nilNotInMonth: Bool) -> NSDate? {
