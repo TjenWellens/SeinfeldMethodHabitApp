@@ -9,7 +9,7 @@ Still is a work in progress
 
 ## Frameworks
 - Core Data
-- *Local Notification*
+- Local Notification
 
 ## Detailed Contents:
 - MVC & Delegation 
