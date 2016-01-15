@@ -25,3 +25,5 @@ This app helps you to do something daily. It is based on Jerry Seinfeld's method
   - UISplitViewController
   - *UITabBarController*
 - UITableView & UICollectionView
+
+*italic* means not yet implemented
