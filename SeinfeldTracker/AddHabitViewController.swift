@@ -13,11 +13,20 @@ class AddHabitViewController: UIViewController {
     @IBOutlet weak var nameTxt: UITextField!
 
     @IBOutlet weak var datePicker: UIDatePicker!
+
+    @IBAction func hideKeyboard(sender: AnyObject) {
+        if let sender = sender as? UITextField {
+            sender.resignFirstResponder()
+        }
+    }
     
     var habit: Habit?
     
     @IBAction func done() {
-        let name = nameTxt.text!
+        guard let name = nameTxt.text where name.characters.count > 1 else {
+            return
+        }
+
         let reminder = datePicker.date
         habit = Habit(name: name, reminder: reminder, succeededDates: [])
         performSegueWithIdentifier("didAdd", sender: self)
