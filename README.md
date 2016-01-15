@@ -11,6 +11,8 @@ This app helps you to do something daily. It is based on Jerry Seinfeld's method
 - Each habit has a daily notification, so you won't forget it!
 - For each habit you can check the month overview. Here you can input whether a certain day was succesfull
 - A streak counter, counting the chain of your successes!
+### Upcoming
+- A week view of all habits at once, so you can quickly see which habits aren't on track recently
 
 ## Frameworks
 - Core Data
