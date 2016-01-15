@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddHabitViewController: UIViewController {
+class AddHabitViewController: UITableViewController {
     
     @IBOutlet weak var nameTxt: UITextField!
 
