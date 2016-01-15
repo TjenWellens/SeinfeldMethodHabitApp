@@ -7,7 +7,7 @@
     </entity>
     <entity name="HabitSucceeded" representedClassName=".HabitSucceededMO" syncable="YES">
         <attribute name="date" attributeType="Date" syncable="YES"/>
-        <relationship name="habit" maxCount="1" deletionRule="No Action" destinationEntity="Habit" inverseName="succeededDates" inverseEntity="Habit" syncable="YES"/>
+        <relationship name="habit" maxCount="1" deletionRule="Deny" destinationEntity="Habit" inverseName="succeededDates" inverseEntity="Habit" syncable="YES"/>
     </entity>
     <elements>
         <element name="Habit" positionX="61" positionY="297" width="128" height="90"/>

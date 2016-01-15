@@ -106,8 +106,8 @@ extension DataController: HabitDataManager {
     func removeDateFromHabit(habitMO: HabitMO, date: NSDate) {
         let context = self.managedObjectContext
         if let habitSucceededMO: HabitSucceededMO = habitMO.findDate(date){
-            context.deleteObject(habitSucceededMO)
             habitMO.removeSucceededDate(habitSucceededMO)
+            context.deleteObject(habitSucceededMO)
         }
     }
     
