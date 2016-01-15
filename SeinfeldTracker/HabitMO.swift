@@ -80,3 +80,51 @@ extension HabitMO {
         return counter
     }
 }
+
+extension HabitMO {
+    func setLocalNotification(startDate: NSDate) {
+        let notification: UILocalNotification = UILocalNotification()
+        let calendar = NSCalendar.currentCalendar()
+
+        // text
+        notification.alertTitle = self.name
+        notification.alertBody = "Don't break the chain!"
+
+        // date stuff
+        notification.fireDate = startDate
+        notification.timeZone = calendar.timeZone
+        notification.repeatInterval = .Day
+
+        /* Action settings */
+        notification.hasAction = true
+        notification.alertAction = nil // defaults to localized("View") because alertBody
+        // .category -> for more actions like complete in notification instead of view
+
+        // need id for removal of notifications
+        notification.userInfo = [
+                "HabitMO.name" : self.name
+        ]
+        
+        // extra stuff
+        notification.soundName = UILocalNotificationDefaultSoundName
+
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+
+    func removeNotification() {
+        let app = UIApplication.sharedApplication()
+        
+        guard let notifications = app.scheduledLocalNotifications else { return }
+        
+        // delete notifications with name in userInfo
+        for notification in notifications {
+            guard let userInfo = notification.userInfo else { continue }
+            guard let nameObj = userInfo["HabitMO.name"] else { continue }
+            guard let name = nameObj as? String else { continue }
+            
+            if self.name == name {
+                app.cancelLocalNotification(notification)
+            }
+        }
+    }
+}

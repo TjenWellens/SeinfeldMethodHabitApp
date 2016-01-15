@@ -11,4 +11,5 @@ import Foundation
 protocol HabitDataManager {
     func addHabit(habit: Habit)
     func toggleDate(habitMO: HabitMO, date: NSDate)
+    func deleteHabit(habitMO: HabitMO)
 }

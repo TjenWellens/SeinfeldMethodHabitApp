@@ -85,8 +85,12 @@ extension DataController: HabitDataManager {
         addDatesToHabit(habitMO, dates: habit.succeededDates)
         
         saveContext()
+        
+        if let startDate = habitMO.reminder {
+            habitMO.setLocalNotification(startDate)
+        }
     }
-    
+
     func addDatesToHabit(habitMO: HabitMO, dates: [NSDate]) {
         let context = self.managedObjectContext
         
@@ -117,6 +121,12 @@ extension DataController: HabitDataManager {
         } else {
             addDateToHabit(habitMO, date: date)
         }
+        saveContext()
+    }
+
+    func deleteHabit(habitMO: HabitMO) {
+        habitMO.removeNotification()
+        managedObjectContext.deleteObject(habitMO)
         saveContext()
     }
 }

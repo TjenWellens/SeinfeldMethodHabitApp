@@ -92,14 +92,8 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            let context = self.fetchedHabits.managedObjectContext
-            context.deleteObject(self.fetchedHabits.objectAtIndexPath(indexPath) as! NSManagedObject)
-                
-            do {
-                try context.save()
-            } catch {
-                abort()
-            }
+            let habitMO = self.fetchedHabits.objectAtIndexPath(indexPath) as! HabitMO
+            dataController.deleteHabit(habitMO)
         }
     }
 
