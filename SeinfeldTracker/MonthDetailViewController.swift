@@ -29,7 +29,8 @@ class MonthDetailViewController : UICollectionViewController {
     
     func updateTitle(){
         if let habit = habit {
-            self.title = "\(habit.name) (\(Month.calculateStreak(habit)))"
+            habit.updateStreak()
+            self.title = "\(habit.name) (\(habit.streak ?? 0))"
             
         }
     }

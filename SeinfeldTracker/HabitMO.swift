@@ -13,6 +13,7 @@ class HabitMO: NSManagedObject {
     
     @NSManaged var name: String
     @NSManaged var reminder: NSDate?
+    @NSManaged var streak: NSNumber?
     @NSManaged var succeededDates: NSSet
     
     override func awakeFromInsert() {
@@ -47,5 +48,35 @@ extension HabitMO {
             }
         }
         return nil
+    }
+    
+    func updateStreak() {
+        let newStreak = _calculateStreak()
+        if let nsStreak = self.streak {
+            print("updateStreak(old: \(nsStreak.integerValue), new: \(newStreak))")
+            if nsStreak.integerValue == newStreak {
+                return
+            }
+        }
+        print("updateStreak(\(newStreak))")
+        self.streak = NSNumber(integer: newStreak)
+    }
+    
+    func _calculateStreak() -> Int {
+        let today = Month.stripTime(NSDate())
+        let yesterday = Month.previousDay(today)
+        var counter = 0
+        
+        if self.containsDate(today) {
+            counter = 1
+        }
+        
+        var date = yesterday
+        while self.containsDate(date) {
+            counter += 1
+            date = Month.previousDay(date)
+        }
+        
+        return counter
     }
 }

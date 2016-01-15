@@ -88,24 +88,6 @@ class Month {
     static func previousDay(date: NSDate) -> NSDate {
         return CAL.dateByAddingUnit(.Day, value: -1, toDate: date, options: NSCalendarOptions())!
     }
-    
-    static func calculateStreak(habit: HabitMO) -> Int {
-        let today = Month.stripTime(NSDate())
-        let yesterday = Month.previousDay(today)
-        var counter = 0
-        
-        if habit.containsDate(today) {
-            counter = 1
-        }
-        
-        var date = yesterday
-        while habit.containsDate(date) {
-            counter += 1
-            date = Month.previousDay(date)
-        }
-        
-        return counter
-    }
 }
 
 extension Month: NavigateDate {

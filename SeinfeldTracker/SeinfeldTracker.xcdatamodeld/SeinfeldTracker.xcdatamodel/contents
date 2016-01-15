@@ -3,6 +3,7 @@
     <entity name="Habit" representedClassName=".HabitMO" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="reminder" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="streak" optional="YES" attributeType="Integer 32" syncable="YES"/>
         <relationship name="succeededDates" toMany="YES" deletionRule="Cascade" destinationEntity="HabitSucceeded" inverseName="habit" inverseEntity="HabitSucceeded" syncable="YES"/>
     </entity>
     <entity name="HabitSucceeded" representedClassName=".HabitSucceededMO" syncable="YES">
@@ -10,7 +11,7 @@
         <relationship name="habit" maxCount="1" deletionRule="Deny" destinationEntity="Habit" inverseName="succeededDates" inverseEntity="Habit" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Habit" positionX="61" positionY="297" width="128" height="90"/>
+        <element name="Habit" positionX="61" positionY="297" width="128" height="105"/>
         <element name="HabitSucceeded" positionX="315" positionY="270" width="128" height="75"/>
     </elements>
 </model>
