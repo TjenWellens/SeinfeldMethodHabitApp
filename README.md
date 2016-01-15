@@ -1,7 +1,5 @@
-# Seinfeld Method Habit App
+# Seinfeld Method Habit App (Beta)
 Don't break the chain!
-
-Still is a work in progress
 
 ## Description
 This app helps you to do something daily. It is based on Jerry Seinfeld's method for writing every day. For a more detailed explanation of this, see following link: http://lifehacker.com/281626/jerry-seinfelds-productivity-secret
