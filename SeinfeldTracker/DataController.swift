@@ -37,7 +37,7 @@ class DataController {
         self.managedObjectContext.persistentStoreCoordinator = psc
     }
     
-    func createFetchedHabitsController(delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController {
+    func fetchedHabits(delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController {
         
         let fetchRequest = NSFetchRequest()
         let entity = NSEntityDescription.entityForName("Habit", inManagedObjectContext: managedObjectContext)
@@ -51,16 +51,16 @@ class DataController {
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: "Master")
-        aFetchedResultsController.delegate = delegate
+        let habitResults = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: "Master")
+        habitResults.delegate = delegate
         
         do {
-            try aFetchedResultsController.performFetch()
+            try habitResults.performFetch()
         } catch {
             abort()
         }
         
-        return aFetchedResultsController
+        return habitResults
     }
     
     func saveContext () {
@@ -82,7 +82,7 @@ extension DataController: HabitDataManager {
         habitMO.name = habit.name
         habitMO.reminder = habit.reminder
         
-        addDatesToHabit(habitMO, dates: habit.succeededDates)
+        _addDatesToHabit(habitMO, dates: habit.succeededDates)
         
         saveContext()
         
@@ -91,7 +91,7 @@ extension DataController: HabitDataManager {
         }
     }
 
-    func addDatesToHabit(habitMO: HabitMO, dates: [NSDate]) {
+    func _addDatesToHabit(habitMO: HabitMO, dates: [NSDate]) {
         let context = self.managedObjectContext
         
         for date in dates {
@@ -104,10 +104,10 @@ extension DataController: HabitDataManager {
     }
     
     func addDateToHabit(habitMO: HabitMO, date: NSDate){
-        addDatesToHabit(habitMO, dates: [date])
+        _addDatesToHabit(habitMO, dates: [date])
     }
     
-    func removeDateFromHabit(habitMO: HabitMO, date: NSDate) {
+    func _removeDateFromHabit(habitMO: HabitMO, date: NSDate) {
         let context = self.managedObjectContext
         if let habitSucceededMO: HabitSucceededMO = habitMO.findDate(date){
             habitMO.removeSucceededDate(habitSucceededMO)
@@ -117,7 +117,7 @@ extension DataController: HabitDataManager {
     
     func toggleDate(habitMO: HabitMO, date: NSDate) {
         if habitMO.containsDate(date) {
-            removeDateFromHabit(habitMO, date: date)
+            _removeDateFromHabit(habitMO, date: date)
         } else {
             addDateToHabit(habitMO, date: date)
         }

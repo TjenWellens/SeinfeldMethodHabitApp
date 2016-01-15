@@ -10,18 +10,13 @@ import UIKit
 import CoreData
 
 class HabitMO: NSManagedObject {
-    
     @NSManaged var name: String
     @NSManaged var reminder: NSDate?
     @NSManaged var streak: NSNumber?
     @NSManaged var succeededDates: NSSet
-    
-    override func awakeFromInsert() {
-        super.awakeFromInsert()
-        self.reminder = nil
-    }
-    
 }
+
+// Relation: succeededDates
 
 extension HabitMO {
     func addSucceededDate(habitSucceeded:HabitSucceededMO){
@@ -34,6 +29,8 @@ extension HabitMO {
         items.removeObject(habitSucceeded)
     }
 }
+
+// Utility methods
 
 extension HabitMO {
     func containsDate(dayDate: NSDate) -> Bool {
@@ -80,6 +77,8 @@ extension HabitMO {
         return counter
     }
 }
+
+// Notification
 
 extension HabitMO {
     func setLocalNotification(startDate: NSDate) {

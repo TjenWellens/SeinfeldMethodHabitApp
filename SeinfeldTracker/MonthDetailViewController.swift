@@ -13,8 +13,7 @@ class MonthDetailViewController : UICollectionViewController {
     let weeks = 6
     let reuseCellIdentifier = "DateCell"
     let reuseMonthHeaderIdentifier = "MonthHeader"
-    let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
-    
+
     var habit: HabitMO?
     var dataMgr: HabitDataManager?
     
@@ -24,44 +23,47 @@ class MonthDetailViewController : UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateTitle()
+        _updateTitle()
     }
     
-    func updateTitle(){
+    func _updateTitle(){
         if let habit = habit {
             habit.updateStreak()
             self.title = "\(habit.name) (\(habit.streak ?? 0))"
-            
         }
     }
     
-    func dayNumberForIndexPath(indexPath: NSIndexPath, nilNotInMonth: Bool = true) -> Int? {
+    func _dayNumberForIndexPath(indexPath: NSIndexPath, nilNotInMonth: Bool = true) -> Int? {
         return month.dayNumberForIndex(indexPath.row, nilNotInMonth: nilNotInMonth)
     }
-    
+
+    // sections
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return sections
     }
-    
+
+    // itemsPerSection
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return weeks * Month.DAYS_PER_WEEK  // weeks
     }
-    
+
+    // Cell.create
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseCellIdentifier, forIndexPath: indexPath) as! DayCell
-        if let day = dayNumberForIndexPath(indexPath) {
+        if let day = _dayNumberForIndexPath(indexPath) {
             cell.dayLabel.text = "\(day)"
         }else {
             cell.dayLabel.text = ""
         }
         return cell
     }
-    
+
+    // Cell.willDisplay()
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         var fill = UIColor.lightGrayColor().CGColor
         var border = UIColor.lightGrayColor().CGColor
         
-        let dayNr = dayNumberForIndexPath(indexPath)
+        let dayNr = _dayNumberForIndexPath(indexPath)
         if let dayNr = dayNr {
             let dayDate: NSDate = month.dateForDayNr(dayNr)
             if habit!.containsDate(dayDate) {
@@ -76,7 +78,8 @@ class MonthDetailViewController : UICollectionViewController {
         cell.dayLabel.layer.backgroundColor = fill
         cell.dayLabel.layer.borderColor = border
     }
-    
+
+    // Header.create()
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
@@ -88,26 +91,20 @@ class MonthDetailViewController : UICollectionViewController {
             fatalError("Unknown viewtype in \(self.dynamicType).")
         }
     }
-    
+
+    // Click
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         guard let habit = habit, let dataMgr = dataMgr else {
             return
         }
-        guard let dayNr = dayNumberForIndexPath(indexPath) else {
+        guard let dayNr = _dayNumberForIndexPath(indexPath) else {
             return
         }
         
         let date = month.dateForDayNr(dayNr)
         dataMgr.toggleDate(habit, date: date)
         self.collectionView!.reloadItemsAtIndexPaths([indexPath])
-        updateTitle()
-    }
-    
-    func updateMonthGUI(){
-        if let monthHeader = self.monthHeader {
-            monthHeader.monthLabel.text = month.name
-        }
-        self.collectionView!.reloadData()
+        _updateTitle()
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -116,10 +113,17 @@ class MonthDetailViewController : UICollectionViewController {
     }
 }
 
+// Navigate to next or previous month
 extension MonthDetailViewController: NavigateDate {
-    
     func navigateDate(direction: NavigateDateDirection) {
         month.navigateDate(direction)
         updateMonthGUI()
+    }
+
+    func updateMonthGUI(){
+        if let monthHeader = self.monthHeader {
+            monthHeader.monthLabel.text = month.name
+        }
+        self.collectionView!.reloadData()
     }
 }

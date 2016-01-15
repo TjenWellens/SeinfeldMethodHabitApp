@@ -16,7 +16,7 @@ class MasterViewController: UITableViewController {
     var dataController: DataController!
     
     lazy var fetchedHabits: NSFetchedResultsController = {
-        return self.dataController.createFetchedHabitsController(self)
+        return self.dataController.fetchedHabits(self)
     }()
 
     override func viewDidLoad() {
@@ -33,11 +33,6 @@ class MasterViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
         super.viewWillAppear(animated)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Segues
@@ -81,15 +76,15 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("habitCell", forIndexPath: indexPath)
-        self.configureCell(cell, atIndexPath: indexPath)
+        self._configureCell(cell, atIndexPath: indexPath)
         return cell
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        return true // editable
     }
 
+    // Delete row
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let habitMO = self.fetchedHabits.objectAtIndexPath(indexPath) as! HabitMO
@@ -97,11 +92,10 @@ class MasterViewController: UITableViewController {
         }
     }
 
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+    func _configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let habitMO = self.fetchedHabits.objectAtIndexPath(indexPath) as! HabitMO
         cell.textLabel!.text = "\(habitMO.name) (\(habitMO.streak ?? 0))"
     }
-
 }
 
 
@@ -129,7 +123,7 @@ extension MasterViewController : NSFetchedResultsControllerDelegate {
         case .Delete:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
         case .Update:
-            self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
+            self._configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
         case .Move:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
@@ -139,14 +133,5 @@ extension MasterViewController : NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.endUpdates()
     }
-    
-    /*
-    // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
-    
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-    // In the simplest, most efficient, case, reload the table view.
-    self.tableView.reloadData()
-    }
-    */
 }
 
