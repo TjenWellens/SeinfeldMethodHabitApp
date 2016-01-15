@@ -105,7 +105,7 @@ class MasterViewController: UITableViewController {
 
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let habitMO = self.fetchedHabits.objectAtIndexPath(indexPath) as! HabitMO
-        cell.textLabel!.text = habitMO.name
+        cell.textLabel!.text = "\(habitMO.name) (\(habitMO.streak ?? 0))"
     }
 
 }
