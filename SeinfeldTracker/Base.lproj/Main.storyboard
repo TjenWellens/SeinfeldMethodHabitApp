@@ -63,6 +63,7 @@
                     <connections>
                         <segue destination="RMx-3f-FxP" kind="relationship" relationship="masterViewController" id="BlO-5A-QYV"/>
                         <segue destination="vC3-pB-5Vb" kind="relationship" relationship="detailViewController" id="Tll-UG-LXB"/>
+                        <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showEmptyDetail" id="ZO3-ke-FwY"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
@@ -362,4 +363,7 @@
             <point key="canvasLocation" x="1426" y="-638"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ZO3-ke-FwY"/>
+    </inferredMetricsTieBreakers>
 </document>

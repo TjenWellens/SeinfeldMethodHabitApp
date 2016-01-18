@@ -89,6 +89,11 @@ class MasterViewController: UITableViewController {
         if editingStyle == .Delete {
             let habitMO = self.fetchedHabits.objectAtIndexPath(indexPath) as! HabitMO
             dataController.deleteHabit(habitMO)
+            
+            // if landscape: show EmptyDetail
+            if self.splitViewController?.viewControllers.count == 2 {
+                self.splitViewController?.performSegueWithIdentifier("showEmptyDetail", sender: self)
+            }
         }
     }
 
