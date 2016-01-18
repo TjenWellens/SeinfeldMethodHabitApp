@@ -59,6 +59,36 @@ class MonthDetailViewController : UICollectionViewController {
     }
 
     // Cell.willDisplay()
+    /*
+    ------------
+    ITERATION 1:
+    ------------
+    
+    sizeForItemAtIndexPath
+     - collectionView size: (703.0, 768.0)
+     - side: 91.2987
+    
+    willDisplayCell
+     - collectionView size: (703.0, 768.0)
+     - cellWidth: 107.0 <<<---
+     - divider: 2.0
+     - cornerRadius: 53.5
+    
+    ------------
+    ITERATION 2: (after 'next month')
+    ------------
+    
+    sizeForItemAtIndexPath
+     - collectionView size: (703.0, 768.0)
+     - side: 91.2987
+    
+    willDisplayCell
+     - collectionView size: (703.0, 768.0)
+     - cellWidth: 75.0  <<<---
+     - divider: 2.0
+     - cornerRadius: 37.5
+    
+    */
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         var fill = UIColor.lightGrayColor().CGColor
         var border = UIColor.lightGrayColor().CGColor
