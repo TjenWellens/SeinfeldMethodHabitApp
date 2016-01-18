@@ -23,7 +23,7 @@ class AddHabitViewController: UITableViewController {
     var habit: Habit?
     
     @IBAction func done() {
-        guard let name = nameTxt.text where name.characters.count > 1 else {
+        guard let name = nameTxt.text where name.characters.count > 0 else {
             return
         }
 
