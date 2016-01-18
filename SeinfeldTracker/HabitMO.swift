@@ -50,25 +50,24 @@ extension HabitMO {
     func updateStreak() {
         let newStreak = _calculateStreak()
         if let nsStreak = self.streak {
-            print("updateStreak(old: \(nsStreak.integerValue), new: \(newStreak))")
             if nsStreak.integerValue == newStreak {
                 return
             }
         }
-        print("updateStreak(\(newStreak))")
         self.streak = NSNumber(integer: newStreak)
     }
     
     func _calculateStreak() -> Int {
-        let today = Month.stripTime(NSDate())
-        let yesterday = Month.previousDay(today)
         var counter = 0
-        
+        let today = Month.stripTime(NSDate())
+
+        // today is a bonus towards the streak
         if self.containsDate(today) {
             counter = 1
         }
         
-        var date = yesterday
+        // start with yesterday, iterating the day before untill streak is broken
+        var date = Month.previousDay(today)
         while self.containsDate(date) {
             counter += 1
             date = Month.previousDay(date)

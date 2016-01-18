@@ -46,7 +46,10 @@ class Month {
     }
     
     func dateForDayNr(dayNr: Int) -> NSDate {
-        return calendar.dateByAddingUnit(.Day, value: dayNr, toDate: date, options: NSCalendarOptions())!
+        // date = first day
+        // dayNr 1 -> date + 0
+        // dayNr 2 -> date + 1
+        return calendar.dateByAddingUnit(.Day, value: dayNr - 1, toDate: date, options: NSCalendarOptions())!
     }
     
     static func getDayOfMonth(day: Int, monthDate: NSDate, nilNotInMonth: Bool) -> NSDate? {
@@ -61,7 +64,7 @@ class Month {
             return nil
         }
         
-        return date
+        return Month.stripTime(date)
     }
     
     static func getFirstDayOfMonth(date: NSDate) -> NSDate{
@@ -81,7 +84,9 @@ class Month {
     }
     
     static func stripTime(dateTime: NSDate) -> NSDate {
-        let components = CAL.components([.Day, .Month, .Year], fromDate: dateTime)
+        let components = CAL.components([.Day, .Month, .Year, .Hour], fromDate: dateTime)
+        // needs to set an hour, because without hour (aka hour=0) is previous day
+        components.hour = 10
         return CAL.dateFromComponents(components)!
     }
     
